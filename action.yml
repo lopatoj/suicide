@@ -5,7 +5,7 @@ runs:
   using: composite
   steps:
     - run: |
-        rm "${{ github.workflow_ref }}" | sed "s|${{ github.repository }}/||" | cut -d'@' -f1
+        rm $(echo "${{ github.workflow_ref }}" | sed "s|${{ github.repository }}/||" | cut -d'@' -f1)
         git commit -m "Remove workflow ${{github.workflow}}"
         git push
       shell: bash
