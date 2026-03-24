@@ -1,0 +1,8 @@
+name: 'Suicide'
+description: 'Removes the workflow containing this action from its repository'
+author: 'Justin Lopato'
+runs:
+  using: composite
+  steps:
+    - run: echo ${${${{ github.workflow_ref }}#*${{ github.repository }}/}%@*}
+      shell: bash
