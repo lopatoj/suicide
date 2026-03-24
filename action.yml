@@ -5,9 +5,9 @@ runs:
   using: composite
   steps:
     - run: |
-        rm $(echo "${{ github.workflow_ref }}" | sed "s|${{ github.repository }}/||" | cut -d'@' -f1)
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
         git config --global user.name "github-actions[bot]"
+        git rm $(echo "${{ github.workflow_ref }}" | sed "s|${{ github.repository }}/||" | cut -d'@' -f1)
         git commit -m "Remove workflow ${{github.workflow}}"
         git push
       shell: bash
