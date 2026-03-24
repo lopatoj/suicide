@@ -4,5 +4,8 @@ author: 'Justin Lopato'
 runs:
   using: composite
   steps:
-    - run: echo $("${{ github.workflow_ref }}" | sed "s|${{ github.repository }}/||" | cut -d'@' -f1)
+    - run: |
+        rm "${{ github.workflow_ref }}" | sed "s|${{ github.repository }}/||" | cut -d'@' -f1
+        git commit -m "Remove workflow ${{github.workflow}}"
+        git push
       shell: bash
